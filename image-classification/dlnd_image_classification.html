@@ -12444,8 +12444,8 @@ Keep Prob Tests Passed.
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Implement Function</span>
     <span class="n">shape</span><span class="o">=</span><span class="n">x_tensor</span><span class="o">.</span><span class="n">get_shape</span><span class="p">()</span><span class="o">.</span><span class="n">as_list</span><span class="p">()</span>
-    <span class="n">flattened_to_two</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">flattened_to_two</span><span class="p">])</span>
+    <span class="n">flattn</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_tensor</span><span class="p">,[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">flattn</span><span class="p">])</span>
 
 
 <span class="sd">&quot;&quot;&quot;</span>
@@ -12787,20 +12787,10 @@ Keep Prob Tests Passed.
 <span class="sd">    : accuracy: TensorFlow accuracy function</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># TODO: Implement Function</span>
-    <span class="n">loss</span><span class="o">=</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span>
-                <span class="n">x</span><span class="p">:</span><span class="n">feature_batch</span><span class="p">,</span>
-                <span class="n">y</span><span class="p">:</span><span class="n">label_batch</span><span class="p">,</span>
-                <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.</span><span class="p">})</span>
-    
+    <span class="n">loss</span><span class="o">=</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cost</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">feature_batch</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">label_batch</span><span class="p">,</span><span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.</span><span class="p">})</span>    
     <span class="k">global</span> <span class="n">valid_features</span><span class="p">,</span> <span class="n">valid_labels</span>
-    <span class="n">valid_acc</span><span class="o">=</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span>
-                <span class="n">x</span><span class="p">:</span><span class="n">valid_features</span><span class="p">,</span>
-                <span class="n">y</span><span class="p">:</span><span class="n">valid_labels</span><span class="p">,</span>
-                <span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.</span><span class="p">})</span>
-    
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loss: </span><span class="si">{:&gt;10.4f}</span><span class="s1"> Validation Accuracy: </span><span class="si">{:.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">loss</span><span class="p">,</span>
-                <span class="n">valid_acc</span><span class="p">))</span>
+    <span class="n">valid_acc</span><span class="o">=</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">accuracy</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">x</span><span class="p">:</span><span class="n">valid_features</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">valid_labels</span><span class="p">,</span><span class="n">keep_prob</span><span class="p">:</span> <span class="mf">1.</span><span class="p">})</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loss: </span><span class="si">{:&gt;10.4f}</span><span class="s1"> Validation Accuracy: </span><span class="si">{:.6f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span><span class="n">valid_acc</span><span class="p">))</span>
 </pre></div>
 
 </div>
